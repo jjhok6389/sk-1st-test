@@ -1,0 +1,8 @@
+streamlit==1.32.0
+pandas==2.2.1
+folium==0.15.1
+streamlit-folium==0.18.0
+beautifulsoup4==4.12.3
+selenium==4.19.0
+webdriver-manager==4.0.1
+plotly==5.20.0
