@@ -6,3 +6,9 @@ beautifulsoup4==4.12.3
 selenium==4.19.0
 webdriver-manager==4.0.1
 plotly==5.20.0
+PyMySQL==1.1.0
+SQLAlchemy==2.0.30
+cryptography==42.0.5
+python-dotenv==1.0.1
+openpyxl==3.1.2
+requests==2.31.0

@@ -1,0 +1,28 @@
+# 가상환경
+myvenv/
+venv/
+.venv/
+
+# 파이썬 캐시
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 비밀번호/환경설정 (절대 커밋 금지)
+.env
+
+# 구버전 SQLite / 로컬 이미지 (현재는 MySQL BLOB 사용)
+db/
+*.sqlite
+*.db
+
+# 전처리 산출물 (prepare_data.py 실행 시 생성)
+data/region_stats.csv
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# OS/IDE
+.DS_Store
+.idea/
+.vscode/
