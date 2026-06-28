@@ -140,7 +140,7 @@ def load_db():
             try:
                 # 이미지 바이너리는 무거우므로 별도 조회 (목록은 메타데이터만)
                 cars = pd.read_sql(
-                    "SELECT car_id, persona_type, brand, car_model, price, reason, "
+                    "SELECT car_id, persona_code, brand, car_model, price, reason, "
                     "img_url, img_mime FROM persona_cars",
                     conn,
                 )
@@ -207,8 +207,8 @@ def get_recommended_cars(persona: str, cars: pd.DataFrame) -> pd.DataFrame:
         if not matched.empty:
             return matched
     # 하위 호환성 유지
-    if "persona_type" in cars.columns:
-        matched = cars[cars["persona_type"] == persona]
+    if "persona_code" in cars.columns:
+        matched = cars[cars["persona_code"] == persona]
         if not matched.empty:
             return matched.head(4)
     return pd.DataFrame()

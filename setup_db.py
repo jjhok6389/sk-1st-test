@@ -12,7 +12,7 @@ v4 (MySQL 전환)
   · "아우디" 브랜드 표기 오타(아udi) 정정
 v3
   · Car-BTI 3번째 축: 프리미엄(P)/가성비(B) → 남(M)/여(W)
-  · persona_cars: persona_type(4자리) 기준 추천 차량 64건 (16유형 × 4대)
+  · persona_cars: persona_code(4자리) 기준 추천 차량 64건 (16유형 × 4대)
   · company_faq: company 컬럼 추가 → 추천 차량 브랜드별 FAQ 연동
 """
 
@@ -37,7 +37,7 @@ cur.execute("DROP TABLE IF EXISTS company_faq")
 cur.execute("""
 CREATE TABLE persona_cars (
     car_id        INT AUTO_INCREMENT PRIMARY KEY,
-    persona_type  VARCHAR(4) NOT NULL,
+    persona_code  CHAR(4) NOT NULL,
     brand         VARCHAR(40),
     car_model     VARCHAR(60),
     price         VARCHAR(40),
@@ -45,7 +45,7 @@ CREATE TABLE persona_cars (
     img_url       VARCHAR(500),
     img_data      LONGBLOB,
     img_mime      VARCHAR(40),
-    INDEX idx_persona (persona_type),
+    INDEX idx_persona (persona_code),
     INDEX idx_brand (brand)
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 """)
@@ -169,12 +169,12 @@ PERSONA_CARS = {
 }
 
 persona_cars_rows = []
-for persona_type, cars in PERSONA_CARS.items():
+for persona_code, cars in PERSONA_CARS.items():
     for brand, model, price, reason in cars:
-        persona_cars_rows.append((persona_type, brand, model, price, reason))
+        persona_cars_rows.append((persona_code, brand, model, price, reason))
 
 cur.executemany(
-    "INSERT INTO persona_cars (persona_type, brand, car_model, price, reason) "
+    "INSERT INTO persona_cars (persona_code, brand, car_model, price, reason) "
     "VALUES (%s,%s,%s,%s,%s)",
     persona_cars_rows,
 )
